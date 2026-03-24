@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganache Local Explorer</title>
+    <!-- Modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="explorer.css">
+    <!-- Ethers.js v6 UMD build -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.1/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <div class="header-content">
+                <div class="title-wrap">
+                    <div class="status-indicator"></div>
+                    <h1>Local Block Explorer</h1>
+                </div>
+                <div class="network-badge">Ganache • Port 7545</div>
+            </div>
+            <p class="subtitle">Real-time local blockchain visualization</p>
+        </header>
+
+        <main>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-label">Latest Block</span>
+                    <span class="stat-value" id="latest-block-val">--</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Transactions</span>
+                    <span class="stat-value" id="total-tx-val">--</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Network Status</span>
+                    <span class="stat-value connected">Connected</span>
+                </div>
+            </div>
+
+            <section class="recent-blocks">
+                <div class="section-header">
+                    <h2>Recent Blocks</h2>
+                    <button class="refresh-btn" id="refresh-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/></svg>
+                        &nbsp;Refresh
+                    </button>
+                </div>
+                <div class="blocks-grid" id="blocks-container">
+                    <div class="loading-state">Syncing local blocks from Ganache...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="explorer.js"></script>
+</body>
+</html>
