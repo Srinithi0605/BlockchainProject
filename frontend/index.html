@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Digital ID Verification</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h1>AI Digital ID Verification</h1>
+        <p class="subtitle">
+          Upload your ID image and a selfie to run OCR + face verification and
+          write proof on Ethereum.
+        </p>
+
+        <form id="verificationForm" class="upload-form">
+          <div class="input-group">
+            <label for="idImage">ID Image</label>
+            <input id="idImage" name="idImage" type="file" accept="image/*" required />
+          </div>
+
+          <div class="input-group">
+            <label for="selfieImage">Selfie Image</label>
+            <input id="selfieImage" name="selfieImage" type="file" accept="image/*" required />
+          </div>
+
+          <button id="submitBtn" type="submit">Verify Identity</button>
+        </form>
+
+        <div id="loading" class="loading hidden">Verifying... please wait.</div>
+        <div id="error" class="error hidden"></div>
+
+        <section id="result" class="result hidden">
+          <h2>Verification Result</h2>
+          <div class="result-row">
+            <span class="label">Extracted Text</span>
+            <pre id="extractedText" class="value"></pre>
+          </div>
+
+          <div class="result-row status-row">
+            <span class="label">Status</span>
+            <span id="statusBadge" class="badge">Unknown</span>
+          </div>
+
+          <div class="result-row">
+            <span class="label">Generated Hash</span>
+            <code id="hashValue" class="value"></code>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
