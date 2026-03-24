@@ -1,3 +1,123 @@
-This project implements a secure and tamper-proof identity verification system using Artificial Intelligence (AI) and Blockchain technology.
+# AI-Based Digital Identity Verification System with Blockchain
 
-The system verifies identity documents using AI techniques such as OCR and face matching, and stores the verification result securely on blockchain using either Ethereum or Hyperledger Fabric.
+This mini project verifies a user identity by:
+1. Running OCR on an uploaded ID image via **Tesseract.js**.
+2. Running a simple (mock) face verification logic on ID vs selfie.
+3. Hashing OCR output with **SHA-256**.
+4. Writing verification proof (`hash`, `status`) to an Ethereum smart contract on **Ganache** using **Ethers.js**.
+
+## Project Structure
+
+```text
+/project
+  /frontend
+    index.html
+    style.css
+    script.js
+  /backend
+    server.js
+    package.json
+  /contracts
+    IdentityVerification.sol
+```
+
+## Prerequisites
+
+- Node.js 18+
+- Ganache (local Ethereum node)
+- Remix IDE (for contract deployment)
+
+## 1) Deploy Smart Contract (Remix + Ganache)
+
+1. Open [https://remix.ethereum.org](https://remix.ethereum.org).
+2. Create file `IdentityVerification.sol` and paste `contracts/IdentityVerification.sol`.
+3. Compile with Solidity `0.8.20` (or compatible 0.8.x).
+4. In Ganache, copy:
+   - RPC URL (usually `http://127.0.0.1:7545`)
+   - One account private key
+5. In Remix:
+   - Open **Deploy & Run Transactions**
+   - Select **Injected Provider - MetaMask** or **Web3 Provider**
+   - Point to Ganache RPC URL
+   - Deploy contract
+6. Copy deployed contract address.
+
+## 2) Configure Backend
+
+Create `.env` inside `/backend`:
+
+```env
+PORT=3000
+GANACHE_RPC_URL=http://127.0.0.1:7545
+PRIVATE_KEY=0xYOUR_GANACHE_ACCOUNT_PRIVATE_KEY
+CONTRACT_ADDRESS=0xYOUR_DEPLOYED_CONTRACT_ADDRESS
+```
+
+## 3) Install + Run Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+Server runs at `http://localhost:3000`.
+
+## 4) Run Frontend
+
+Use any static file server from project root:
+
+```bash
+# Option A: VSCode Live Server
+# Open frontend/index.html with Live Server
+
+# Option B: npx serve
+npx serve frontend -l 5500
+```
+
+Open browser at `http://localhost:5500`.
+
+## API Endpoint
+
+### `POST /verify`
+
+Form-data fields:
+- `idImage` (file)
+- `selfieImage` (file)
+
+Success response:
+
+```json
+{
+  "extractedText": "...",
+  "verified": true,
+  "hash": "..."
+}
+```
+
+## Notes on Face Verification
+
+The current face verification is intentionally simple for demo purposes:
+- It compares ID image file size vs selfie file size.
+- If the size difference ratio is under threshold, it returns verified.
+
+In production, replace this with a real face model (e.g., FaceNet/ArcFace pipeline).
+
+## Error Handling Included
+
+- Missing image files
+- Multer upload errors
+- OCR/Blockchain runtime errors
+- Frontend loading + error state handling
+
+## Commands Summary
+
+```bash
+# Backend
+cd backend
+npm install
+npm start
+
+# Frontend (from repo root)
+npx serve frontend -l 5500
+```
