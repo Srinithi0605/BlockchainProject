@@ -1,0 +1,21 @@
+{
+  "name": "blockchainproject",
+  "version": "1.0.0",
+  "description": "This mini project verifies a user identity by:\r 1. Running OCR on an uploaded ID image via **Tesseract.js**.\r 2. Running a simple (mock) face verification logic on ID vs selfie.\r 3. Hashing OCR output with **SHA-256**.\r 4. Writing verification proof (`hash`, `status`) to an Ethereum smart contract on **Ganache** using **Ethers.js**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srinithi0605/BlockchainProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Srinithi0605/BlockchainProject/issues"
+  },
+  "homepage": "https://github.com/Srinithi0605/BlockchainProject#readme"
+}
